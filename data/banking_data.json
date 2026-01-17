@@ -1,0 +1,25 @@
+{
+    "customers": [
+      {
+        "customer_id": "CUST001",
+        "name": "Rahul Sharma",
+        "account_number": "ACC1001",
+        "balance": 55000,
+        "transactions": [
+          {"type": "credit", "amount": 10000, "description": "Salary"},
+          {"type": "debit", "amount": 5000, "description": "ATM Withdrawal"}
+        ]
+      },
+      {
+        "customer_id": "CUST002",
+        "name": "Anita Verma",
+        "account_number": "ACC1002",
+        "balance": 72000,
+        "transactions": [
+          {"type": "debit", "amount": 2000, "description": "Shopping"},
+          {"type": "credit", "amount": 15000, "description": "Freelance Payment"}
+        ]
+      }
+    ]
+  }
+  
