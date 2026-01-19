@@ -1,13 +1,28 @@
+import asyncio
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import create_agent
-from langchain_mcp_adapters.client import MultiServerMCPClient  
+from langchain_mcp_adapters.client import MultiServerMCPClient
+
 from constant import MODEL
 from cred import gemini_api_key
-import asyncio
+from prompt import system_prompt
 
 
-async def banking_agent():
+async def banking_agent() :
+    """
+    Summary:
+        Initialize and return a banking agent integrated with MCP and Gemini LLM.
+
+        This function creates an MCP client that connects to a local banking
+        MCP server using stdio communication. It initializes a Google Gemini
+        language model, converts the MCP-exposed tools into LangChain tools,
+        and creates an agent configured with a predefined banking system prompt.
+
+    Returns:
+        Any: A LangChain agent instance capable of handling banking-related
+             operations by invoking MCP tools.
+    """
 
     client = MultiServerMCPClient(  
         {
@@ -33,7 +48,8 @@ async def banking_agent():
     # Agent
     banking_agent = create_agent(
         model = llm,
-        tools = tools
+        tools = tools,
+        system_prompt = system_prompt
     )
 
     return banking_agent

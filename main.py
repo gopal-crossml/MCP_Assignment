@@ -1,8 +1,22 @@
 import asyncio
+
 from agents.banking_agent import banking_agent
 
 bank_agent = asyncio.run(banking_agent())
 async def run_main():
+    """
+    Summary:
+        Execute sample banking queries using the MCP banking agent.
+
+        This function sends multiple user queries to the initialized
+        banking agent, including customer details retrieval, account
+        balance lookup, and transaction history fetching. The responses
+        returned by the agent are printed to the console to demonstrate
+        how the agent interacts with MCP tools and processes banking data.
+
+    Return:
+        None    
+    """
     print("\n Banking MCP Agent Ready\n")
 
     query1 = "Get customer details for Rahul Sharma"

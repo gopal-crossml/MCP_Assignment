@@ -1,4 +1,5 @@
 import json
+
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("Banking-MCP")
