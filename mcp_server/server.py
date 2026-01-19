@@ -7,12 +7,34 @@ DATA_FILE = "data/banking_data.json"
 
 
 def load_data():
+    """
+    Summary:    
+        Load customer banking data from the data file.
+
+    Args:
+        None
+
+    Returns:
+        dict: Parsed JSON data containing customer records and
+        related banking information.
+    """
     with open(DATA_FILE, "r") as f:
         return json.load(f)
 
 
 @mcp.tool()
 def fetch_customer(name: str) -> str:
+    """
+    summary:
+        Retrieve customer information by name.
+
+    Args:
+        name (str): Name of the customer to look up (case-insensitive).
+
+    Returns:
+        str: String representation of the customer record if found,
+        otherwise "Customer not found".
+    """
     data = load_data()
     for c in data["customers"]:
         if c["name"].lower() == name.lower():
@@ -22,6 +44,17 @@ def fetch_customer(name: str) -> str:
 
 @mcp.tool()
 def fetch_balance(account_number: str) -> str:
+    """
+    Summary:    
+        Retrieve the account balance for a given account number.
+
+    Args:
+        account_number (str): Unique account number of the customer.
+
+    Returns:
+        str: Account balance formatted as a currency string if the account
+        exists; otherwise, returns "Account not found".
+    """
     data = load_data()
     for c in data["customers"]:
         if c["account_number"] == account_number:
@@ -31,6 +64,17 @@ def fetch_balance(account_number: str) -> str:
 
 @mcp.tool()
 def fetch_transactions(account_number: str) -> str:
+    """
+    Summary:
+        Retrieve transaction history for a given account number.
+
+    Args:
+        account_number (str): Unique account number of the customer.
+
+    Returns:
+        str: String representation of the customer's transaction history
+        if the account exists; otherwise, returns "Account not found".
+    """
     data = load_data()
     for c in data["customers"]:
         if c["account_number"] == account_number:
@@ -41,31 +85,3 @@ def fetch_transactions(account_number: str) -> str:
 if __name__ == "__main__":
     mcp.run()
 
-
-# from mcp.server.fastmcp import FastMCP
-# from tools.banking_tools import (
-#     get_customer_details,
-#     get_account_balance,
-#     get_transaction_history
-# )
-
-# mcp = FastMCP("Banking MCP Server")
-
-
-# @mcp.tool()
-# def fetch_customer_details(name: str) -> str:
-#     return get_customer_details(name)
-
-
-# @mcp.tool()
-# def fetch_account_balance(account_number: str) -> str:
-#     return get_account_balance(account_number)
-
-
-# @mcp.tool()
-# def fetch_transaction_history(account_number: str) -> str:
-#     return get_transaction_history(account_number)
-
-
-# if __name__ == "__main__":
-#     mcp.run()
